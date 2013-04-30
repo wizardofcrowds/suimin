@@ -81,6 +81,14 @@ describe Suimin::Sleeper do
 
   end
 
+  describe "#expected_sleep_duration_value" do
+    context "given [0.8, 1], [0.2, 2]" do
+      subject { suimin.expected_sleep_duration_value }
+      let(:suimin) { Suimin::Sleeper.new(name: "ichiro", distribution: [[0.8, 1], [0.2, 2]]) }
+      it { should be_within(0.0000001).of(1.2) }
+    end
+  end
+
   describe "#sleep" do
 
     context "the given distribution has [0.2, 0.1], [0.8, 0.05]" do

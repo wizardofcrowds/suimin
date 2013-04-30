@@ -31,6 +31,10 @@ class Suimin::Sleeper
     rule.find{|elm| elm[0] >= _rand}[1]
   end
 
+  def expected_sleep_duration_value
+    distribution.inject(0.0) {|res, elm| res += elm[0] * elm[1] }
+  end
+
   private
   def normalize_distribution(_distribution)
     if _distribution.nil? || _distribution.empty?
